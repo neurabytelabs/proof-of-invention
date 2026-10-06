@@ -1,0 +1,7 @@
+.DS_Store
+.ruff_cache/
+node_modules/
+
+# The fframes demo video project is not part of this repository.
+# Its Rust build folder (demo/target) is several GB and holds build logs.
+demo/
