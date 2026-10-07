@@ -1,14 +1,31 @@
 # Proof of Invention
 
-> A prompt machine with no language model inside. It turns a number into a build dare for a frontier model, and keeps an honest wall of the runs.
+A prompt machine with no language model inside: it turns a number into a build dare for a frontier model, and keeps an honest wall of the runs.
 
-[![self-test](https://github.com/neurabytelabs/proof-of-invention/actions/workflows/selftest.yml/badge.svg)](https://github.com/neurabytelabs/proof-of-invention/actions/workflows/selftest.yml)
-
-**Status:** prototype. Version 1 of the atlas is frozen at 214,704 prompts. The wall holds one card so far (see [The wall](#the-wall)).
+[![License: MIT](https://img.shields.io/github/license/neurabytelabs/proof-of-invention)](LICENSE)
 
 **Open the machine:** https://neurabytelabs.github.io/proof-of-invention/
 
-## What it does
+![The machine showing prompt #14300, with each fragment underlined by its gene](docs/screenshot.png)
+
+## Why
+
+Good "build it from scratch" prompts are hard to write and easy to fake. This machine writes them from a fixed grammar and atlas instead of a model, so every prompt is reproducible from its number, every sentence can be traced to where it came from, and results are recorded only when a real run backs them.
+
+## Quick start
+
+Open the machine at the link above, or from a clone:
+
+```bash
+git clone https://github.com/neurabytelabs/proof-of-invention.git
+cd proof-of-invention
+open index.html                    # macOS; elsewhere open the file in any browser. index.html#1551 jumps to a number
+node tools/selftest.cjs            # the page's self-test over all numbers (Node 18+, no dependencies)
+node tools/samples.cjs             # list every domain with its number range
+node tools/samples.cjs '#1551'     # one number, fragment by fragment, with its gene and source
+```
+
+## How it works
 
 Pick a number and the machine writes one "impossible but real" build prompt. For example, `#14300`:
 
@@ -21,6 +38,16 @@ No model writes these prompts. The machine is one HTML file with an engine, a gr
 - **3 courage levels.** `spark`, `build` and `all out` use the same genes with a longer ladder and a bigger payoff.
 - **Fixed numbers.** A number picks a domain, a level, a template for every sentence and a variant for every field. The same number gives the same prompt forever.
 - **Traceable text.** Tap any sentence to see the gene, the template and the atlas field it came from, with the alternatives that a different number would have chosen.
+
+```mermaid
+flowchart LR
+  N["number, e.g. #14300"] --> D[decode]
+  D --> Dom[domain from the atlas]
+  D --> L[courage level]
+  D --> T[template per sentence + variant per field]
+  Dom & L & T --> P[prompt with all 8 genes]
+  P --> F[every fragment tagged with gene, template, atlas field]
+```
 
 There is no backend, no API key, no build step and no model at run time. The only network requests load web fonts; without them the page uses system fonts.
 
@@ -41,7 +68,7 @@ The page tests itself. Open `index.html#selftest` in a browser, or run it with N
 node tools/selftest.cjs
 ```
 
-It needs Node 18 or later and no dependencies. It checks all 214,704 numbers in about 5 to 8 seconds on a laptop, including:
+It needs Node 18 or later and no dependencies. It checks all 214,704 numbers in a few seconds, including:
 
 - every prompt carries all eight genes and stays in the word range for its level;
 - every character belongs to a fragment that names its gene and its template or atlas field;
@@ -80,6 +107,7 @@ The verdict on this card is the builder's own and is backed by the self-test, no
 | `index.html` | The machine: engine, grammar, atlas, self-test and wall in one file. |
 | `tools/selftest.cjs` | Runs the page's self-test in Node. |
 | `tools/samples.cjs` | Prints the prompts of a domain, or one number with the source of every fragment. |
+| `docs/screenshot.png` | Screenshot of the machine at `#14300` used in this README. |
 | `docs/atlas-authoring.md` | Rules for growing the atlas: append only, `since`, frozen version 1. |
 | `prompts/meta-prompt-v1.md` | The prompt that built the machine (`#0000` plus its contract). |
 | `docs/niyet-sozlesmesi-v1.md` | The intent contract behind the meta-prompt (Turkish). |
@@ -92,8 +120,9 @@ The GitHub Pages copy of the machine is published from `index.html` by `.github/
 
 No published number ever changes its prompt. The atlas and the grammar grow only by appending: a new version number and entries marked `"since"`. New numbers start after the last old one. The self-test enforces this with the version 1 digest. Details are in `docs/atlas-authoring.md`.
 
-## Limits
+## Status / limits
 
+- Prototype. Version 1 of the atlas is frozen at 214,704 prompts.
 - The machine writes prompts. It does not run them, and it cannot tell whether a model will succeed.
 - Spark prompts are 81 to 115 words, above the 60 to 100 words the contract asked for, because all eight genes and a witness need the room.
 - The wall has one card, and it is the machine's own build. Only one external run (`#124809`) exists so far.
@@ -105,4 +134,4 @@ Proof of Invention, içinde dil modeli olmayan bir prompt makinesi. Bir numaray�
 
 ## License
 
-[MIT](LICENSE) © 2026 Mustafa Saraç
+MIT. See [LICENSE](LICENSE). © 2026 Mustafa Saraç
