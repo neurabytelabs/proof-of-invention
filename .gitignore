@@ -5,3 +5,15 @@ node_modules/
 # The fframes demo video project is not part of this repository.
 # Its Rust build folder (demo/target) is several GB and holds build logs.
 demo/
+
+# agent / assistant tooling
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+.claude/
+.cursor/
+.cursorrules
+.codex/
+.windsurf/
+.agents/
+.opencode/
