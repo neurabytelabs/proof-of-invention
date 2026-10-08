@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Silent-Ear bearing lab · Proof of Invention #215811</title>
+    <meta name="description" content="Hear a simulated bearing wear out and follow its samples to the envelope spectrum. Built from Proof of Invention prompt #215811 with a coding agent." />
+    <link rel="canonical" href="https://proof.neurabytelabs.com/r/215811/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Proof of Invention" />
+    <meta property="og:title" content="Silent-Ear bearing lab" />
+    <meta property="og:description" content="Hear a simulated bearing wear out and follow its samples to the envelope spectrum. Built from Proof of Invention prompt #215811 with a coding agent." />
+    <meta property="og:url" content="https://proof.neurabytelabs.com/r/215811/" />
+    <meta property="og:image" content="https://proof.neurabytelabs.com/og/215811.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Silent-Ear bearing lab: a bearing cutaway and a raw scope with predicted outer race impacts" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@0xsarac" />
+    <meta name="theme-color" content="#eceff2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121417" media="(prefers-color-scheme: dark)" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Martian+Mono:wght@400;500&amp;family=Newsreader:opsz,wght@6..72,400&amp;display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <style>
+      :root {
+        --bg: #eceff2;
+        --panel: #f7f8fa;
+        --ink: #15181c;
+        --mute: #5d6570;
+        --line: #d5dae1;
+        --accent: #4a3aa8;
+        --sans: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+        --serif: "Newsreader", Georgia, serif;
+        --mono: "Martian Mono", ui-monospace, Menlo, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #121417;
+          --panel: #1a1d21;
+          --ink: #e9ecef;
+          --mute: #9aa3ad;
+          --line: #2c3137;
+          --accent: #a99cff;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      body {
+        font: 16px/1.55 var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: clamp(28px, 7vw, 72px) 16px 56px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+      .lab {
+        font: 500 12px/1 var(--mono);
+        letter-spacing: 0.06em;
+        color: var(--mute);
+        text-transform: uppercase;
+      }
+      h1 {
+        font: 700 clamp(34px, 7vw, 52px)/1.05 var(--sans);
+        letter-spacing: -0.01em;
+        margin: 10px 0 14px;
+      }
+      .lede {
+        font: 400 clamp(19px, 2.6vw, 22px)/1.5 var(--serif);
+        margin: 0;
+        max-width: 34em;
+      }
+      .soon {
+        font: 500 13px/1 var(--mono);
+        color: var(--accent);
+        margin-top: 18px;
+      }
+      .run {
+        display: block;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        color: inherit;
+        text-decoration: none;
+        transition: border-color 0.15s;
+      }
+      .run:hover,
+      .run:focus-visible {
+        border-color: var(--accent);
+      }
+      .run img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1200/630;
+        background: #14100d;
+      }
+      .run .body {
+        padding: 16px 18px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .num {
+        font: 500 13px/1.3 var(--mono);
+        color: var(--mute);
+      }
+      .run h2 {
+        font: 600 22px/1.2 var(--sans);
+        margin: 0;
+      }
+      .run p {
+        margin: 0;
+        color: var(--mute);
+        font-size: 15px;
+      }
+      .go {
+        font-weight: 600;
+        color: var(--accent);
+        margin-top: 4px;
+      }
+      .wall {
+        margin: 0;
+        color: var(--mute);
+        font-size: 15px;
+        max-width: 40em;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding-top: 18px;
+        font-size: 14px;
+        color: var(--mute);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 14px;
+      }
+      footer a {
+        color: var(--ink);
+      }
+      a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+    </style>
+    <style>
+      .back { font: 500 13px/1 var(--mono); color: var(--mute); text-decoration: none; }
+      .back:hover { color: var(--accent); }
+      .facts { margin: 0; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 6px 14px; font-size: 15px; }
+      .facts dt { color: var(--mute); }
+      .facts dd { margin: 0; overflow-wrap: anywhere; }
+      .held { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+      .held i { width: 9px; height: 9px; border-radius: 50%; background: #2f9e6a; display: inline-block; }
+      blockquote { margin: 0; padding: 16px 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; font: 400 18px/1.55 var(--serif); }
+      h2.sec { font: 600 20px/1.2 var(--sans); margin: 0 0 8px; }
+      section p, section li { color: var(--mute); font-size: 15px; }
+      section p { margin: 0 0 10px; }
+      section ul { margin: 0; padding-left: 20px; }
+      section a, .links a { color: var(--accent); }
+      .links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">← Proof of Invention</a>
+      <header>
+        <div class="lab">Run · #215811 · a bearing monitor · all out</div>
+        <h1>Silent-Ear bearing lab</h1>
+        <p class="lede">
+          Hear a simulated bearing wear out, then follow its samples through the
+          housing resonance and the envelope spectrum to a fixed mean + kσ rule.
+          Every sound and number is computed in the browser.
+        </p>
+      </header>
+
+      <a class="run" href="https://silent-ear.neurabytelabs.com/">
+        <img
+          src="/og/215811.png"
+          alt="Silent-Ear bearing lab: a bearing cutaway and a raw scope with predicted outer race impacts"
+          width="1200"
+          height="630"
+        />
+        <div class="body">
+          <span class="num">silent-ear.neurabytelabs.com</span>
+          <span class="go">Open the live demo →</span>
+        </div>
+      </a>
+
+      <div class="links">
+        <a href="https://github.com/neurabytelabs/silent-ear">Repository</a>
+        <a href="https://github.com/neurabytelabs/silent-ear/blob/master/docs/experience/listen-prompt.md">Prompt, contract and run log</a>
+        <a href="https://neurabytelabs.github.io/proof-of-invention/#215811">#215811 in the machine</a>
+      </div>
+
+      <section aria-labelledby="card-h">
+        <h2 class="sec" id="card-h">The card</h2>
+        <dl class="facts">
+          <dt>verdict</dt><dd><span class="held"><i></i>held</span></dd>
+          <dt>model</dt><dd>coding agent (a general class; the card does not name the model)</dd>
+          <dt>duration</dt><dd>about 59 minutes for the first run, then about 18 minutes for one follow-up round</dd>
+          <dt>date</dt><dd>2026-10-08</dd>
+        </dl>
+      </section>
+
+      <section aria-labelledby="dare-h">
+        <h2 class="sec" id="dare-h">The dare</h2>
+        <blockquote>
+          build a bearing monitor from scratch, entirely in code, starting from
+          individual accelerometer samples. design each layer on top of the
+          last: bearing kinematics, defect impacts, a housing resonance, the
+          overall RMS, crest factor and kurtosis, a spectrum analyzer, a
+          band-pass filter, an envelope detector, an envelope spectrum, and a
+          monitor that names the failing race or ball before the bearing
+          seizes. everything has to be real: no setInterval clicks pretending,
+          every sound and number must come from your samples. show it in a
+          bearing cutaway and let me wear a bearing out, then zoom from the
+          monitor down through the resonance into the samples while it runs.
+          beside it, keep a raw scope with predicted impacts marked. treat it
+          like you're proving you could have invented condition monitoring
+          yourself. go all out.
+        </blockquote>
+      </section>
+
+      <section aria-labelledby="how-h">
+        <h2 class="sec" id="how-h">How it was checked</h2>
+        <p>
+          Built from Proof of Invention prompt #215811 with a coding agent;
+          Mustafa Saraç designed the prompt machine and verified the result.
+          The dare comes from the atlas's version 2 entry
+          <code>bearing-monitor</code> and was sent with a written contract.
+        </p>
+        <ul>
+          <li>An independent scipy check on samples from the page's engine puts outer race, inner race and ball faults on BPFO, BPFI (with shaft sidebands) and 2×BSF (with cage sidebands); healthy kurtosis is 3.00.</li>
+          <li>One follow-up round fixed seven review findings, from an off-by-one record in the Rust rule to an unlabelled volume input.</li>
+          <li>In the page's degradation script the RMS rule fires before kurtosis crosses its limit (70.0 against 77.3 simulated minutes). That is the opposite of the textbook order, and the page says so.</li>
+          <li>Not verified: audio on a physical phone and screen readers.</li>
+        </ul>
+        <p>
+          A simulation and teaching tool: not sensor data, and not certified for
+          safety-critical industrial use.
+        </p>
+      </section>
+
+      <footer>
+        <span>Follow the build:</span>
+        <a href="https://mustafasarac.substack.com">Digital Renaissance</a>
+        <a href="https://x.com/0xsarac">@0xsarac</a>
+      </footer>
+    </main>
+  </body>
+</html>
