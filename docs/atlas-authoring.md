@@ -20,6 +20,8 @@ digest of version 1. So:
 - ladders, subjects, truths, payoffs, stages and proof nouns of an existing domain never change or grow;
 - the new version's numbers start right after the last old number, and each new choice gets exactly one number.
 
+Version 2 is the first growth: it appends `bearing-monitor` (`"since": 2`).
+
 Then run `node tools/selftest.cjs` (every rule over every number) and `node tools/samples.cjs <domain-id>`
 (read the domain's prompts at every level and every distinct sentence it can produce).
 

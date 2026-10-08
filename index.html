@@ -1751,11 +1751,13 @@ footer {
          n           the prompt number, e.g. 1551
          domain      as the page names it, e.g. "a computer" (the page warns if it disagrees with n)
          level       "spark" | "build" | "all out"
-         model       the model that ran the prompt
+         model       the model that ran the prompt, or a general class when the card does not name it:
+                     "coding agent" (the self-test checks every card; see MODEL_CLASSES)
          duration    how long the run took
          verdict     "held" | "partly" | "broken": did the anti-fake ban hold?
          link        the recording or artifact (optional)
          linkLabel   text for the link (optional, default "recording")
+         repo        the source repository of the result (optional)
          postmortem  what happened, above all when it broke (optional)
          date        YYYY-MM-DD (optional)
        ===================================================================== -->
@@ -1772,6 +1774,20 @@ footer {
     "date": "2026-09-28",
     "note": "This page is the run of #0000: built from #0000 plus its written contract. The verdict is the builder's, backed by the self-test on this page, not by an outside reviewer. Only what is known is filled in.",
     "postmortem": "What broke on the way. The first number scheme gave every old prompt a second number as soon as the atlas grew; a code review caught it and the encoding was rebuilt so each version's block holds only the choices that version made possible. Four rounds of skeptic readers went over real pulls: one all-out prompt (a Wireworld computer that finds primes) was judged unbuildable in one session and was cut to a decade counter, and dozens of bans and witnesses were rewritten because a lazy build would have slipped past them. Spark prompts land at 81 to 115 words, above the contract's 60 to 100, because all eight genes and a witness need the room. When this card was written, none of the 214,704 dares had been run yet."
+  },
+  {
+    "n": 215811,
+    "domain": "a bearing monitor",
+    "level": "all out",
+    "model": "coding agent",
+    "duration": "about 59 minutes for the first run, then about 18 minutes for one follow-up round in the same session",
+    "verdict": "held",
+    "link": "https://silent-ear.neurabytelabs.com/",
+    "linkLabel": "Silent-Ear bearing lab (live)",
+    "repo": "https://github.com/neurabytelabs/silent-ear",
+    "date": "2026-10-08",
+    "note": "Built from #215811 with a coding agent; Mustafa Saraç designed the prompt machine and verified the result. The card does not name the model, so its model field holds the general class. The dare was rendered by this machine's engine from the bearing-monitor entry before version 2 was published; the published #215811 is word for word the dare that was run. It was sent with a written contract (product limits, physics references, acceptance tests). The prompt, the contract, the follow-up and the run log are in docs/experience/listen-prompt.md in the repository.",
+    "postmortem": "The ban held: every sound and number on the page comes from samples it computes; there is no recorded clip, no OscillatorNode and no timer click. An independent scipy check on samples taken from the engine put the outer race, inner race and ball faults on BPFO, BPFI (with shaft sidebands) and 2xBSF (with cage sidebands), impact rates within about 0.1 percent of the formulas and healthy kurtosis at 3.00. Review of the first run found seven problems, and one follow-up round fixed all of them: the Rust rule scored record N instead of N+1, the reference was too tight to be real, a lead-time sentence printed negative minutes, a fault injected while the reference was learning became part of normal, the volume input had no accessible name, fault lines were crushed into the first 500 Hz, and a Resume button stayed live after the scenario ended. One finding stays as it is: in the page's degradation script the RMS rule fires before kurtosis crosses its limit (70.0 against 77.3 simulated minutes), the opposite of the textbook order, and the page says so. The agent used an AudioBufferSourceNode queue instead of an AudioWorklet, which the contract allowed. Not verified: audio on a physical phone and screen readers."
   }
 ]
   </script>
@@ -1808,7 +1824,8 @@ footer {
 
 <script id="poi-data" type="application/json">{
  "versions": [
-  1
+  1,
+  2
  ],
  "grammar": [
   {
@@ -5617,6 +5634,80 @@ footer {
     "the full state vector, gate by gate"
    ],
    "stage": "on a circuit diagram"
+  },
+  {
+   "id": "bearing-monitor",
+   "since": 2,
+   "title": "a bearing monitor",
+   "kind": "invention",
+   "subject": "a bearing monitor",
+   "proof": "condition monitoring",
+   "source": "Vibration-based Condition Monitoring (Robert Randall, 2011), then Rolling Element Bearing Diagnostics: A Tutorial (Robert Randall and Jerome Antoni, 2011)",
+   "sourceNote": "Randall's book and the tutorial he wrote with Antoni walk the path every vibration analyst learns: bearing geometry gives the fault frequencies BPFO, BPFI, BSF and FTF, each strike on a defect rings a structural resonance, overall RMS, crest factor and kurtosis move first, and a band-pass filter, an envelope detector and the envelope spectrum then show which part is failing, the method the Case Western Reserve University bearing data is used to teach.",
+   "prims": [
+    {
+     "name": "accelerometer samples",
+     "short": "samples"
+    }
+   ],
+   "ladder": [
+    "bearing kinematics",
+    "defect impacts",
+    "a housing resonance",
+    "the overall RMS",
+    "crest factor and kurtosis",
+    "a spectrum analyzer",
+    "a band-pass filter",
+    "an envelope detector",
+    "an envelope spectrum"
+   ],
+   "payoff": {
+    "spark": {
+     "top": "a cracked bearing i can hear",
+     "use": "seed a crack",
+     "noun": "bearing"
+    },
+    "build": {
+     "top": "a test rig whose alarm trips while the crack grows",
+     "use": "grow the crack",
+     "noun": "test rig"
+    },
+    "allout": {
+     "top": "a monitor that names the failing race or ball before the bearing seizes",
+     "use": "wear a bearing out",
+     "noun": "monitor"
+    }
+   },
+   "truth": "every sound and number must come from your {short}",
+   "bans": [
+    {
+     "no": "no recorded clip pretending",
+     "not": "not a recorded clip pretending"
+    },
+    {
+     "no": "no setInterval clicks pretending",
+     "not": "not setInterval clicks pretending"
+    }
+   ],
+   "zooms": [
+    {
+     "from": "the {noun}",
+     "through": "the resonance",
+     "into": "the {short}",
+     "flow": "each impact ring and decay"
+    },
+    {
+     "from": "the {noun}",
+     "through": "the balls",
+     "into": "the {short}",
+     "flow": "every ball strike the crack"
+    }
+   ],
+   "witness": [
+    "a raw scope with predicted impacts marked",
+    "impact times checked against BPFO, BPFI and BSF"
+   ],
+   "stage": "in a bearing cutaway"
   }
  ]
 }</script>
@@ -7128,8 +7219,52 @@ footer {
     return done();
   }
 
+  // ------------------------------------------------------------------ the wall
+  // A card's model is required. It names the model that ran the prompt, or, when the card does not name
+  // the model, one of these general classes. Cards that name a model are checked exactly as before.
+  var MODEL_CLASSES = ["coding agent"];
+  function isModelClass(m) {
+    return typeof m === "string" && MODEL_CLASSES.indexOf(m.trim().toLowerCase()) >= 0;
+  }
+  // Checks the wall's cards against the atlas; returns a list of problems (empty when every card is sound).
+  function wall(POI, DATA, cards) {
+    var eng = POI.make(clone(DATA)),
+      bad = [];
+    if (!Array.isArray(cards)) return ["the wall must be a JSON array of cards"];
+    cards.forEach(function (c, i) {
+      var id = "card " + i;
+      function need(ok, msg) {
+        if (!ok) bad.push(id + ": " + msg);
+      }
+      if (!c || typeof c !== "object" || Array.isArray(c)) return need(false, "not an object");
+      var num = typeof c.n === "number" ? c.n : parseInt(String(c.n).replace("#", ""), 10),
+        r = null;
+      try {
+        r = eng.render(num);
+        id = POI.pad(num);
+      } catch (e) {
+        return need(false, "the number " + c.n + " is not in the atlas");
+      }
+      need(c.domain === r.domain.title, "domain must be " + JSON.stringify(r.domain.title));
+      need(c.level === r.level.name, "level must be " + JSON.stringify(r.level.name));
+      need(
+        s(c.model) && c.model.trim() === c.model,
+        "model is required: the model that ran the prompt, or a general class (" + MODEL_CLASSES.join(", ") + ")",
+      );
+      need(s(c.duration), "duration is required");
+      need(["held", "partly", "broken"].indexOf(c.verdict) >= 0, "verdict must be held, partly or broken");
+      ["link", "repo"].forEach(function (k) {
+        if (c[k] !== undefined) need(/^https?:\/\//i.test(String(c[k])), k + " must be an http(s) address");
+      });
+    });
+    return bad;
+  }
+
   var SELFTEST = {
     run: run,
+    wall: wall,
+    MODEL_CLASSES: MODEL_CLASSES,
+    isModelClass: isModelClass,
     EXPECT_0000: EXPECT_0000,
     EXPECT_GOLDEN: EXPECT_GOLDEN,
     FROZEN: FROZEN,
@@ -8453,11 +8588,19 @@ footer {
         esc(c.level || "") +
         "<\/dd><dt>model<\/dt><dd>" +
         esc(c.model || "") +
+        (POI_SELFTEST.isModelClass(c.model)
+          ? ' <span style="color:var(--ink-3)">(a general class; this card does not name the model)<\/span>'
+          : "") +
         "<\/dd><dt>duration<\/dt><dd>" +
         esc(c.duration || "") +
         "<\/dd><dt>result<\/dt><dd>" +
         link +
         "<\/dd>" +
+        (c.repo && /^https?:\/\//i.test(String(c.repo))
+          ? '<dt>source<\/dt><dd><a href="' +
+            esc(c.repo) +
+            '" target="_blank" rel="noopener">repository<\/a><\/dd>'
+          : "") +
         (c.date ? "<dt>date<\/dt><dd>" + esc(c.date) + "<\/dd>" : "") +
         "<\/dl>" +
         (c.note ? '<p class="pm">' + esc(c.note) + "<\/p>" : "") +

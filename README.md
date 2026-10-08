@@ -34,7 +34,7 @@ Pick a number and the machine writes one "impossible but real" build prompt. For
 No model writes these prompts. The machine is one HTML file with an engine, a grammar and an atlas:
 
 - **8 genes.** Every prompt carries all of them: a primitive, a ladder of named layers, an anti-fake ban, a payoff you can use, a zoom from the payoff down to the primitive, a proof frame, "go all out", and feasibility (the ladder follows a path that textbooks and courses already teach).
-- **48 domains in the atlas.** Each domain names its primitive, its ladder and the source the ladder follows, for example *The Elements of Computing Systems* for the computer. Domain 0 is the machine itself.
+- **49 domains in the atlas.** Each domain names its primitive, its ladder and the source the ladder follows, for example *The Elements of Computing Systems* for the computer. Domain 0 is the machine itself.
 - **3 courage levels.** `spark`, `build` and `all out` use the same genes with a longer ladder and a bigger payoff.
 - **Fixed numbers.** A number picks a domain, a level, a template for every sentence and a variant for every field. The same number gives the same prompt forever.
 - **Traceable text.** Tap any sentence to see the gene, the template and the atlas field it came from, with the alternatives that a different number would have chosen.
@@ -68,14 +68,15 @@ The page tests itself. Open `index.html#selftest` in a browser, or run it with N
 node tools/selftest.cjs
 ```
 
-It needs Node 18 or later and no dependencies. It checks all 214,704 numbers in a few seconds, including:
+It needs Node 18 or later and no dependencies. It checks all 217,296 numbers in a few seconds, including:
 
 - every prompt carries all eight genes and stays in the word range for its level;
 - every character belongs to a fragment that names its gene and its template or atlas field;
 - `encode(decode(n)) = n` for every number, and every number gives a different prompt;
 - a second, independently built engine re-renders every 97th number and gets the same text;
 - version 1 still matches the published digest `6oyf7evfct`, so a one-word edit to any published prompt fails the test;
-- the engine source has no randomness, clock, storage or network access.
+- the engine source has no randomness, clock, storage or network access;
+- every card on the wall decodes to its domain and level and has a model (named, or a general class such as `coding agent`), a duration and a verdict.
 
 CI runs the same command on every push and pull request.
 
@@ -88,15 +89,16 @@ node tools/samples.cjs '#1551'     # one number, fragment by fragment, with its 
 
 ## The wall
 
-The wall is the JSON block marked `THE WALL` in `index.html`. Each card is one real run of a pulled prompt: the number, the model, how long it took, a verdict on whether the anti-fake ban held (`held`, `partly` or `broken`) and a postmortem. Cards that broke stay on the wall.
+The wall is the JSON block marked `THE WALL` in `index.html`. Each card is one real run of a pulled prompt: the number, the model (or, when the card does not name the model, a general class: `coding agent`), how long it took, a verdict on whether the anti-fake ban held (`held`, `partly` or `broken`) and a postmortem. Cards that broke stay on the wall.
 
-Before this repository went public, every card was checked against a record of the run. No card was removed, because the only card has a source.
+Every card was checked against a record of the run. No card was removed.
 
 | Card | Run | Source checked |
 |---|---|---|
 | `#0000` (the machine) | Claude Opus 5.5 in Claude Code built this page from the `#0000` prompt and its contract, 2026-09-28, about six hours including a pause at a usage limit. | The Claude Code session log of the build. The model ID, the date, the time window and the events in the postmortem (the number-scheme rebuild after a code review, the rounds of skeptic readers, the Wireworld prompt cut to a decade counter) appear in that log. |
+| `#215811` (a bearing monitor) | A coding agent built the Silent-Ear bearing lab from the `#215811` dare and a written contract, 2026-10-08: about 59 minutes, then one follow-up round of about 18 minutes. The card gives the model as the general class `coding agent`. Live at https://silent-ear.neurabytelabs.com/, run page https://proof.neurabytelabs.com/r/215811/. | The run log, the contract and the follow-up prompt in `docs/experience/listen-prompt.md` of [neurabytelabs/silent-ear](https://github.com/neurabytelabs/silent-ear), and an independent check of the samples (scipy envelope analysis) done outside the agent. |
 
-The verdict on this card is the builder's own and is backed by the self-test, not by an outside reviewer. The card says so.
+The verdict on `#0000` is the builder's own and is backed by the self-test, not by an outside reviewer. The card says so.
 
 **One run is not on the wall yet.** On 2026-09-28, prompt `#124809` (radio, all out) was run in Claude Cowork and produced *Radio from Samples*, published at https://proof.neurabytelabs.com/r/124809/ (source in `site/r/124809/`). The prompt text used for that run matches the machine's `#124809` word for word. It has no card because the model, the duration and the verdict were not recorded. A card will be added only with those three facts.
 
@@ -111,7 +113,7 @@ The verdict on this card is the builder's own and is backed by the self-test, no
 | `docs/atlas-authoring.md` | Rules for growing the atlas: append only, `since`, frozen version 1. |
 | `prompts/meta-prompt-v1.md` | The prompt that built the machine (`#0000` plus its contract). |
 | `docs/niyet-sozlesmesi-v1.md` | The intent contract behind the meta-prompt (Turkish). |
-| `site/` | The static site at proof.neurabytelabs.com: a landing page and the `#124809` radio. |
+| `site/` | The static site at proof.neurabytelabs.com: a landing page, the `#124809` radio and the `#215811` run page. |
 | `deploy/` | Dockerfile and nginx config that serve `site/`. |
 
 The GitHub Pages copy of the machine is published from `index.html` by `.github/workflows/pages.yml`.
@@ -122,15 +124,15 @@ No published number ever changes its prompt. The atlas and the grammar grow only
 
 ## Status / limits
 
-- Prototype. Version 1 of the atlas is frozen at 214,704 prompts.
+- Prototype. Version 1 of the atlas is frozen at 214,704 prompts. Version 2 appends one domain, `bearing-monitor` (`#214704` to `#217295`), for 217,296 in all.
 - The machine writes prompts. It does not run them, and it cannot tell whether a model will succeed.
 - Spark prompts are 81 to 115 words, above the 60 to 100 words the contract asked for, because all eight genes and a witness need the room.
-- The wall has one card, and it is the machine's own build. Only one external run (`#124809`) exists so far.
+- The wall has two cards: the machine's own build and `#215811`. The `#124809` radio run has no card yet.
 - Feasibility is a design goal of the atlas, not a guarantee. Some all-out prompts may not finish in one session.
 
 ## Türkçe özet
 
-Proof of Invention, içinde dil modeli olmayan bir prompt makinesi. Bir numarayı, öncü bir modele verilecek tek bir "imkânsız ama gerçek" inşa promptuna çevirir. Aynı numara her zaman aynı promptu verir. Her cümle, bir gene ve atlastaki bir kayda kadar izlenebilir. Duvar yalnızca gerçek koşuları gösterir; çalışanları da çökenleri de. Şu an duvarda tek kart var: makinenin kendi inşası. `#124809` numaralı radyo koşusu gerçek, ama model, süre ve hüküm kaydedilmediği için duvarda kartı yok.
+Proof of Invention, içinde dil modeli olmayan bir prompt makinesi. Bir numarayı, öncü bir modele verilecek tek bir "imkânsız ama gerçek" inşa promptuna çevirir. Aynı numara her zaman aynı promptu verir. Her cümle, bir gene ve atlastaki bir kayda kadar izlenebilir. Duvar yalnızca gerçek koşuları gösterir; çalışanları da çökenleri de. Şu an duvarda iki kart var: makinenin kendi inşası ve `#215811` (Silent-Ear rulman laboratuvarı; model alanında genel sınıf `coding agent`). `#124809` numaralı radyo koşusu gerçek, ama model, süre ve hüküm kaydedilmediği için duvarda kartı yok.
 
 ## License
 
